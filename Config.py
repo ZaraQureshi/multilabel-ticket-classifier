@@ -1,9 +1,26 @@
+from pathlib import Path
+
+
 class Config:
     """Basic configuration for the starter prototype.
 
     This file is intentionally simple. Students may improve configuration
     management as part of the assessment.
     """
+
+    #Paths
+    BASE_DIR = Path(__file__).resolve().parent
+    print(BASE_DIR)
+    DATA_DIR = BASE_DIR / "data"
+    ARTIFACTS_DIR = BASE_DIR / "artifacts"
+    OUTPUTS_DIR = BASE_DIR / "outputs"
+
+    DATA_FILES = {
+        "AppGallery": DATA_DIR / "AppGallery.csv",
+        # "Purchasing": DATA_DIR / "Purchasing.csv",
+        # "new_messages": DATA_DIR / "new_messages.csv"
+    }
+
 
     # Input text columns
     TICKET_SUMMARY = "Ticket Summary"
@@ -18,3 +35,25 @@ class Config:
 
     # Used by the existing prototype to run separate experiments per Type 1 group.
     GROUPED = "y1"
+
+    # Data filtering / splitting
+    MIN_CLASS_SAMPLES = 3
+    TEST_SIZE = 0.2
+    RANDOM_SEED = 0
+
+    # Feature extraction
+    TFIDF_MAX_FEATURES = 2000
+    TFIDF_MIN_DF = 2
+    TFIDF_MAX_DF = 0.95
+
+    # Modelling
+    MODEL_NAME = "random_forest"
+    RANDOM_FOREST_PARAMS = {
+        "n_estimators": 300,
+        "class_weight": "balanced_subsample",
+    }
+
+    LOGISTIC_REGRESSION_PARAMS = {
+        "max_iter": 2000,
+        "class_weight": "balanced",
+    }
