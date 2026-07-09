@@ -26,6 +26,10 @@ class Config:
     TICKET_SUMMARY = "Ticket Summary"
     INTERACTION_CONTENT = "Interaction content"
 
+    # Value substituted for missing labels (e.g. y3/y4 not always present).
+    # Treated as its own valid class rather than dropping the row.
+    MISSING_LABEL_FILL = "Not Applicable"
+
     # Label columns after renaming original Type 1-Type 4 columns
     TYPE_COLS = ["y2", "y3", "y4"]
 

@@ -24,11 +24,12 @@ def parse_args():
     parser = argparse.ArgumentParser(description="Batch inference on new customer messages")
     parser.add_argument("--input", required=True, help="Path to a CSV of new messages")
     parser.add_argument("--output", required=True, help="Path to write the predictions CSV")
-    # parser.add_argument("--model", choices=list(MODEL_REGISTRY.keys()), default=Config.MODEL_NAME)
+    parser.add_argument("--model", choices=list(MODEL_REGISTRY.keys()), default=Config.MODEL_NAME)
     return parser.parse_args()
 
 
-def load_new_messages(path: str) -> pd.DataFrame:
+def load_new_messages(path):
+    print("Path: ",path)
     path = Path(path)
     if not path.exists():
         raise FileNotFoundError(f"Input file not found: {path}")
@@ -69,10 +70,10 @@ def main():
     df_clean = clean_text_columns(df.copy())
 
     
-    logger.info("=== Transforming text with the fitted (not refit) vectorizer ===")
+    logger.info("Transforming text with the fitted (not refit) vectorizer")
     X = featurizer.transform(df_clean)
 
-    logger.info("=== Generating predictions ===")
+    logger.info("Generating predictions")
     predictions = model.predict(X)
     confidences = model.predict_proba_max(X)
 
@@ -89,13 +90,13 @@ def main():
         output_df[f"confidence_{col}"] = confidences[col].round(4)
 
 
-    output_df["model_name"] = args.model
-    output_df["prediction_timestamp"] = datetime.now(timezone.utc).isoformat()
+    output_df["model_name"] = Config.MODEL_NAME
+    output_df["prediction_timestamp"] = datetime.datetime.now(datetime.timezone.utc).isoformat()
 
     output_path = Path(args.output)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_df.to_csv(output_path, index=False)
-    logger.info("=== Wrote %d predictions to %s ===", len(output_df), output_path)
+    logger.info(" Wrote %d predictions to %s", len(output_df), output_path)
 
 
 if __name__ == "__main__":
