@@ -5,7 +5,7 @@ from sklearn.multioutput import MultiOutputClassifier
 from sklearn.preprocessing import LabelEncoder
 
 from Config import Config
-from model.base import BaseModel
+from models.base_model import BaseModel
 
 
 class RandomForestModel(BaseModel):
