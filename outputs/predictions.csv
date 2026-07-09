@@ -1,0 +1,6 @@
+message_id,input_text,predicted_y2,confidence_y2,predicted_y3,confidence_y3,predicted_y4,confidence_y4,model_name,prediction_timestamp
+1,AppGallery update problem | The app store update does not install and keeps failing on my phone.,Problem/Fault,0.5167,Not Applicable,0.37,Not Applicable,0.49,random_forest,2026-07-07T16:41:47.953350+00:00
+2,Refund request | I paid for an app but it did not work. Please help me get a refund.,Problem/Fault,0.6667,Third Party APPs,0.38,Refund,0.39,random_forest,2026-07-07T16:41:47.953350+00:00
+3,Login issue | I cannot sign in to my account after changing my password.,Problem/Fault,0.5767,Not Applicable,0.3733,Not Applicable,0.5633,random_forest,2026-07-07T16:41:47.953350+00:00
+4,Subscription cancellation | I want to cancel my subscription and stop future payments.,Others,0.4633,Not Applicable,0.5633,Not Applicable,0.61,random_forest,2026-07-07T16:41:47.953350+00:00
+5,General feedback | The application works well but the search feature is sometimes slow.,Problem/Fault,0.6333,Not Applicable,0.3267,Not Applicable,0.4833,random_forest,2026-07-07T16:41:47.953350+00:00

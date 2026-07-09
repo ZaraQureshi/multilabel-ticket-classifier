@@ -1,0 +1,149 @@
+{
+  "y2": {
+    "Others": {
+      "precision": 0.8,
+      "recall": 0.4444444444444444,
+      "f1-score": 0.5714285714285714,
+      "support": 9.0
+    },
+    "Problem/Fault": {
+      "precision": 0.7222222222222222,
+      "recall": 0.9285714285714286,
+      "f1-score": 0.8125,
+      "support": 14.0
+    },
+    "Suggestion": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 1.0
+    },
+    "accuracy": 0.7083333333333334,
+    "macro avg": {
+      "precision": 0.5074074074074074,
+      "recall": 0.4576719576719577,
+      "f1-score": 0.4613095238095238,
+      "support": 24.0
+    },
+    "weighted avg": {
+      "precision": 0.7212962962962962,
+      "recall": 0.7083333333333334,
+      "f1-score": 0.6882440476190476,
+      "support": 24.0
+    }
+  },
+  "y3": {
+    "AppGallery-Install/Upgrade": {
+      "precision": 0.5,
+      "recall": 0.5,
+      "f1-score": 0.5,
+      "support": 2.0
+    },
+    "AppGallery-Use": {
+      "precision": 1.0,
+      "recall": 0.5,
+      "f1-score": 0.6666666666666666,
+      "support": 2.0
+    },
+    "Coupon/Gifts/Points Issues": {
+      "precision": 0.875,
+      "recall": 1.0,
+      "f1-score": 0.9333333333333333,
+      "support": 7.0
+    },
+    "Not Applicable": {
+      "precision": 0.8,
+      "recall": 0.8888888888888888,
+      "f1-score": 0.8421052631578947,
+      "support": 9.0
+    },
+    "Third Party APPs": {
+      "precision": 1.0,
+      "recall": 0.6666666666666666,
+      "f1-score": 0.8,
+      "support": 3.0
+    },
+    "VIP / Offers / Promotions": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 1.0
+    },
+    "accuracy": 0.8333333333333334,
+    "macro avg": {
+      "precision": 0.8624999999999999,
+      "recall": 0.7592592592592592,
+      "f1-score": 0.7903508771929824,
+      "support": 24.0
+    },
+    "weighted avg": {
+      "precision": 0.8468749999999999,
+      "recall": 0.8333333333333334,
+      "f1-score": 0.8269005847953217,
+      "support": 24.0
+    }
+  },
+  "y4": {
+    "Can't update Apps": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 1.0
+    },
+    "Can't use or acquire": {
+      "precision": 0.7142857142857143,
+      "recall": 1.0,
+      "f1-score": 0.8333333333333334,
+      "support": 5.0
+    },
+    "Cooperated campaign issue": {
+      "precision": 1.0,
+      "recall": 0.5,
+      "f1-score": 0.6666666666666666,
+      "support": 2.0
+    },
+    "Not Applicable": {
+      "precision": 0.7272727272727273,
+      "recall": 0.8888888888888888,
+      "f1-score": 0.8,
+      "support": 9.0
+    },
+    "Offers / Vouchers / Promotions": {
+      "precision": 0.5,
+      "recall": 1.0,
+      "f1-score": 0.6666666666666666,
+      "support": 1.0
+    },
+    "Other download/install/update issue": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 1.0
+    },
+    "Refund": {
+      "precision": 1.0,
+      "recall": 0.3333333333333333,
+      "f1-score": 0.5,
+      "support": 3.0
+    },
+    "UI Abnormal in Huawei AppGallery": {
+      "precision": 1.0,
+      "recall": 0.5,
+      "f1-score": 0.6666666666666666,
+      "support": 2.0
+    },
+    "accuracy": 0.7083333333333334,
+    "macro avg": {
+      "precision": 0.6176948051948052,
+      "recall": 0.5277777777777778,
+      "f1-score": 0.5166666666666666,
+      "support": 24.0
+    },
+    "weighted avg": {
+      "precision": 0.7340367965367965,
+      "recall": 0.7083333333333334,
+      "f1-score": 0.6749999999999999,
+      "support": 24.0
+    }
+  }
+}
