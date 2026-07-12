@@ -1,66 +1,66 @@
 {
   "y2": {
     "Problem/Fault": {
-      "precision": 0.8571428571428571,
+      "precision": 0.7058823529411765,
       "recall": 0.8571428571428571,
-      "f1-score": 0.8571428571428571,
+      "f1-score": 0.7741935483870968,
       "support": 14.0
     },
     "Suggestion": {
-      "precision": 0.8947368421052632,
-      "recall": 0.8947368421052632,
-      "f1-score": 0.8947368421052632,
+      "precision": 0.875,
+      "recall": 0.7368421052631579,
+      "f1-score": 0.8,
       "support": 19.0
     },
-    "accuracy": 0.8787878787878788,
+    "accuracy": 0.7878787878787878,
     "macro avg": {
-      "precision": 0.8759398496240601,
-      "recall": 0.8759398496240601,
-      "f1-score": 0.8759398496240601,
+      "precision": 0.7904411764705883,
+      "recall": 0.7969924812030075,
+      "f1-score": 0.7870967741935484,
       "support": 33.0
     },
     "weighted avg": {
-      "precision": 0.8787878787878788,
-      "recall": 0.8787878787878788,
-      "f1-score": 0.8787878787878788,
+      "precision": 0.80325311942959,
+      "recall": 0.7878787878787878,
+      "f1-score": 0.7890518084066471,
       "support": 33.0
     }
   },
   "y3": {
     "AppGallery-Install/Upgrade": {
-      "precision": 0.6,
+      "precision": 1.0,
       "recall": 1.0,
-      "f1-score": 0.75,
+      "f1-score": 1.0,
       "support": 3.0
     },
     "AppGallery-Use": {
       "precision": 1.0,
-      "recall": 0.3333333333333333,
-      "f1-score": 0.5,
+      "recall": 0.6666666666666666,
+      "f1-score": 0.8,
       "support": 3.0
     },
     "Coupon/Gifts/Points Issues": {
-      "precision": 1.0,
-      "recall": 0.8,
-      "f1-score": 0.8888888888888888,
+      "precision": 0.7142857142857143,
+      "recall": 1.0,
+      "f1-score": 0.8333333333333334,
       "support": 5.0
     },
     "General": {
-      "precision": 0.0,
-      "recall": 0.0,
-      "f1-score": 0.0,
+      "precision": 0.5,
+      "recall": 1.0,
+      "f1-score": 0.6666666666666666,
       "support": 1.0
     },
     "Invoice": {
-      "precision": 1.0,
+      "precision": 0.25,
       "recall": 0.5,
-      "f1-score": 0.6666666666666666,
+      "f1-score": 0.3333333333333333,
       "support": 2.0
     },
     "Payment": {
-      "precision": 0.8,
-      "recall": 1.0,
-      "f1-score": 0.8888888888888888,
+      "precision": 0.7777777777777778,
+      "recall": 0.5833333333333334,
+      "f1-score": 0.6666666666666666,
       "support": 12.0
     },
     "Payment issue": {
@@ -81,31 +81,31 @@
       "f1-score": 1.0,
       "support": 3.0
     },
-    "accuracy": 0.8181818181818182,
+    "accuracy": 0.7575757575757576,
     "macro avg": {
-      "precision": 0.8222222222222223,
-      "recall": 0.6814814814814815,
-      "f1-score": 0.70679012345679,
+      "precision": 0.8046737213403881,
+      "recall": 0.8055555555555556,
+      "f1-score": 0.7740740740740741,
       "support": 33.0
     },
     "weighted avg": {
-      "precision": 0.8606060606060607,
-      "recall": 0.8181818181818182,
-      "f1-score": 0.8038720538720538,
+      "precision": 0.8152958152958153,
+      "recall": 0.7575757575757576,
+      "f1-score": 0.7646464646464647,
       "support": 33.0
     }
   },
   "y4": {
     "Can't install Apps": {
-      "precision": 0.3333333333333333,
+      "precision": 1.0,
       "recall": 1.0,
-      "f1-score": 0.5,
+      "f1-score": 1.0,
       "support": 1.0
     },
     "Can't update Apps": {
-      "precision": 0.0,
-      "recall": 0.0,
-      "f1-score": 0.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
       "support": 1.0
     },
     "Can't use or acquire": {
@@ -115,15 +115,15 @@
       "support": 4.0
     },
     "Cooperated campaign issue": {
-      "precision": 0.0,
-      "recall": 0.0,
-      "f1-score": 0.0,
+      "precision": 0.3333333333333333,
+      "recall": 1.0,
+      "f1-score": 0.5,
       "support": 1.0
     },
     "Invoice related request": {
-      "precision": 1.0,
+      "precision": 0.25,
       "recall": 0.5,
-      "f1-score": 0.6666666666666666,
+      "f1-score": 0.3333333333333333,
       "support": 2.0
     },
     "Offers / Vouchers / Promotions": {
@@ -139,9 +139,9 @@
       "support": 1.0
     },
     "Others": {
-      "precision": 0.5,
-      "recall": 0.5,
-      "f1-score": 0.5,
+      "precision": 0.6666666666666666,
+      "recall": 1.0,
+      "f1-score": 0.8,
       "support": 2.0
     },
     "Personal data": {
@@ -163,15 +163,15 @@
       "support": 2.0
     },
     "Risk Control": {
-      "precision": 1.0,
+      "precision": 0.3333333333333333,
       "recall": 0.5,
-      "f1-score": 0.6666666666666666,
+      "f1-score": 0.4,
       "support": 2.0
     },
     "Subscription cancellation": {
-      "precision": 0.7333333333333333,
-      "recall": 1.0,
-      "f1-score": 0.8461538461538461,
+      "precision": 0.5714285714285714,
+      "recall": 0.36363636363636365,
+      "f1-score": 0.4444444444444444,
       "support": 11.0
     },
     "UI Abnormal in Huawei AppGallery": {
@@ -180,17 +180,17 @@
       "f1-score": 1.0,
       "support": 1.0
     },
-    "accuracy": 0.7575757575757576,
+    "accuracy": 0.6363636363636364,
     "macro avg": {
-      "precision": 0.594047619047619,
-      "recall": 0.5892857142857143,
-      "f1-score": 0.5663919413919414,
+      "precision": 0.6360544217687075,
+      "recall": 0.7224025974025974,
+      "f1-score": 0.6591269841269841,
       "support": 33.0
     },
     "weighted avg": {
-      "precision": 0.709090909090909,
-      "recall": 0.7575757575757576,
-      "f1-score": 0.7113442113442113,
+      "precision": 0.63997113997114,
+      "recall": 0.6363636363636364,
+      "f1-score": 0.6198653198653199,
       "support": 33.0
     }
   }
