@@ -1,0 +1,11 @@
+2026-07-12 22:42:22,604 [INFO] __main__: Loading new messages from data/new_messages.csv
+2026-07-12 22:42:22,621 [INFO] __main__: Applying text preprocessing
+2026-07-12 22:42:22,622 [INFO] preprocess: No 'Ticket id' column present; skipping de-duplication step
+2026-07-12 22:42:22,638 [INFO] __main__: Loading artifacts for random_forest
+2026-07-12 22:42:22,817 [INFO] __main__: Transforming text for random_forest
+2026-07-12 22:42:22,820 [INFO] __main__: Generating predictions for random_forest
+2026-07-12 22:42:22,921 [INFO] __main__:  Wrote 5 predictions to outputs\predictions.csv
+2026-07-12 22:42:22,922 [INFO] __main__: Loading artifacts for logistic_regression
+2026-07-12 22:42:22,956 [INFO] __main__: Transforming text for logistic_regression
+2026-07-12 22:42:22,958 [INFO] __main__: Generating predictions for logistic_regression
+2026-07-12 22:42:22,966 [INFO] __main__:  Wrote 5 predictions to outputs\predictions.csv

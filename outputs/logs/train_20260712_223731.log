@@ -1,0 +1,48 @@
+2026-07-12 22:37:31,768 [INFO] __main__: Load raw data
+2026-07-12 22:37:31,833 [WARNING] data_loader:  Interaction content has 2 null values
+2026-07-12 22:37:31,867 [INFO] data_loader: Loaded 206 rows from 2 source file(s)
+2026-07-12 22:37:31,867 [INFO] __main__: Clean text
+2026-07-12 22:37:32,950 [INFO] __main__: Filtering rare classes (min 3 samples are required per class)
+2026-07-12 22:37:32,963 [INFO] preprocess: filter_rare_classes: dropping classes in 'y3' with < 3 samples: {'Refund': 1}
+2026-07-12 22:37:32,966 [INFO] preprocess: filter_rare_classes: dropping classes in 'y4' with < 3 samples: {'Payment failed': 2, "Can't download Apps": 1, 'Cannot connect - Server': 1, 'AppGallery not loading': 1, 'Security issue / malware': 1}
+2026-07-12 22:37:32,967 [INFO] preprocess: filter_rare_classes: 206 -> 156 rows
+2026-07-12 22:37:32,968 [INFO] __main__: Splitting train/test (test_size=0.20)
+2026-07-12 22:37:33,034 [INFO] __main__: Train rows: 123, Test rows: 33
+2026-07-12 22:37:33,034 [INFO] __main__: Fitting TF-IDF vectorizer on training data only
+2026-07-12 22:37:33,057 [INFO] embeddings: Fitted TF-IDF vectorizer: vocabulary size = 2000
+2026-07-12 22:37:33,063 [INFO] __main__: Training model: random_forest
+2026-07-12 22:37:34,375 [INFO] __main__: Evaluating random_forest on test set
+2026-07-12 22:37:34,435 [INFO] evaluation: Target 'y2': accuracy=0.879 macro-F1=0.876
+2026-07-12 22:37:34,441 [INFO] evaluation: Target 'y3': accuracy=0.818 macro-F1=0.707
+2026-07-12 22:37:34,446 [INFO] evaluation: Target 'y4': accuracy=0.758 macro-F1=0.566
+2026-07-12 22:37:34,448 [INFO] evaluation: Saved metrics JSON to C:\Users\qures\MSAIJAN\Engineering and Evaluating AI Systems\CA_Code_Starter\CA_Code_Starter\outputs\metrics_random_forest.json
+2026-07-12 22:37:34,453 [INFO] evaluation: Saved classification report CSV to C:\Users\qures\MSAIJAN\Engineering and Evaluating AI Systems\CA_Code_Starter\CA_Code_Starter\outputs\classification_report_random_forest.csv
+2026-07-12 22:37:34,457 [INFO] __main__: Saved confusion matrix CSV to C:\Users\qures\MSAIJAN\Engineering and Evaluating AI Systems\CA_Code_Starter\CA_Code_Starter\outputs\confusion_matrix_y2.csv
+2026-07-12 22:37:34,640 [INFO] __main__: Saved confusion matrix plot to C:\Users\qures\MSAIJAN\Engineering and Evaluating AI Systems\CA_Code_Starter\CA_Code_Starter\outputs\confusion_matrix_y2.png
+2026-07-12 22:37:34,643 [INFO] __main__: Saved confusion matrix CSV to C:\Users\qures\MSAIJAN\Engineering and Evaluating AI Systems\CA_Code_Starter\CA_Code_Starter\outputs\confusion_matrix_y3.csv
+2026-07-12 22:37:34,825 [INFO] __main__: Saved confusion matrix plot to C:\Users\qures\MSAIJAN\Engineering and Evaluating AI Systems\CA_Code_Starter\CA_Code_Starter\outputs\confusion_matrix_y3.png
+2026-07-12 22:37:34,829 [INFO] __main__: Saved confusion matrix CSV to C:\Users\qures\MSAIJAN\Engineering and Evaluating AI Systems\CA_Code_Starter\CA_Code_Starter\outputs\confusion_matrix_y4.csv
+2026-07-12 22:37:35,164 [INFO] __main__: Saved confusion matrix plot to C:\Users\qures\MSAIJAN\Engineering and Evaluating AI Systems\CA_Code_Starter\CA_Code_Starter\outputs\confusion_matrix_y4.png
+2026-07-12 22:37:35,388 [INFO] embeddings: Saved vectorizer to C:\Users\qures\MSAIJAN\Engineering and Evaluating AI Systems\CA_Code_Starter\CA_Code_Starter\artifacts\vectorizer_random_forest.joblib
+2026-07-12 22:37:35,389 [INFO] __main__: Model saved to: C:\Users\qures\MSAIJAN\Engineering and Evaluating AI Systems\CA_Code_Starter\CA_Code_Starter\artifacts\model_random_forest.joblib
+2026-07-12 22:37:35,389 [INFO] __main__: Vectorizer saved to: C:\Users\qures\MSAIJAN\Engineering and Evaluating AI Systems\CA_Code_Starter\CA_Code_Starter\artifacts\vectorizer_random_forest.joblib
+2026-07-12 22:37:35,389 [INFO] __main__: Metrics saved to: C:\Users\qures\MSAIJAN\Engineering and Evaluating AI Systems\CA_Code_Starter\CA_Code_Starter\outputs\metrics_random_forest.json
+2026-07-12 22:37:35,389 [INFO] __main__: Report CSV saved to: C:\Users\qures\MSAIJAN\Engineering and Evaluating AI Systems\CA_Code_Starter\CA_Code_Starter\outputs\classification_report_random_forest.csv
+2026-07-12 22:37:35,390 [INFO] __main__: Training model: logistic_regression
+2026-07-12 22:37:35,472 [INFO] __main__: Evaluating logistic_regression on test set
+2026-07-12 22:37:35,479 [INFO] evaluation: Target 'y2': accuracy=0.788 macro-F1=0.787
+2026-07-12 22:37:35,484 [INFO] evaluation: Target 'y3': accuracy=0.758 macro-F1=0.774
+2026-07-12 22:37:35,489 [INFO] evaluation: Target 'y4': accuracy=0.636 macro-F1=0.659
+2026-07-12 22:37:35,491 [INFO] evaluation: Saved metrics JSON to C:\Users\qures\MSAIJAN\Engineering and Evaluating AI Systems\CA_Code_Starter\CA_Code_Starter\outputs\metrics_logistic_regression.json
+2026-07-12 22:37:35,493 [INFO] evaluation: Saved classification report CSV to C:\Users\qures\MSAIJAN\Engineering and Evaluating AI Systems\CA_Code_Starter\CA_Code_Starter\outputs\classification_report_logistic_regression.csv
+2026-07-12 22:37:35,495 [INFO] __main__: Saved confusion matrix CSV to C:\Users\qures\MSAIJAN\Engineering and Evaluating AI Systems\CA_Code_Starter\CA_Code_Starter\outputs\confusion_matrix_y2.csv
+2026-07-12 22:37:35,587 [INFO] __main__: Saved confusion matrix plot to C:\Users\qures\MSAIJAN\Engineering and Evaluating AI Systems\CA_Code_Starter\CA_Code_Starter\outputs\confusion_matrix_y2.png
+2026-07-12 22:37:35,590 [INFO] __main__: Saved confusion matrix CSV to C:\Users\qures\MSAIJAN\Engineering and Evaluating AI Systems\CA_Code_Starter\CA_Code_Starter\outputs\confusion_matrix_y3.csv
+2026-07-12 22:37:35,776 [INFO] __main__: Saved confusion matrix plot to C:\Users\qures\MSAIJAN\Engineering and Evaluating AI Systems\CA_Code_Starter\CA_Code_Starter\outputs\confusion_matrix_y3.png
+2026-07-12 22:37:35,779 [INFO] __main__: Saved confusion matrix CSV to C:\Users\qures\MSAIJAN\Engineering and Evaluating AI Systems\CA_Code_Starter\CA_Code_Starter\outputs\confusion_matrix_y4.csv
+2026-07-12 22:37:36,128 [INFO] __main__: Saved confusion matrix plot to C:\Users\qures\MSAIJAN\Engineering and Evaluating AI Systems\CA_Code_Starter\CA_Code_Starter\outputs\confusion_matrix_y4.png
+2026-07-12 22:37:36,155 [INFO] embeddings: Saved vectorizer to C:\Users\qures\MSAIJAN\Engineering and Evaluating AI Systems\CA_Code_Starter\CA_Code_Starter\artifacts\vectorizer_logistic_regression.joblib
+2026-07-12 22:37:36,155 [INFO] __main__: Model saved to: C:\Users\qures\MSAIJAN\Engineering and Evaluating AI Systems\CA_Code_Starter\CA_Code_Starter\artifacts\model_logistic_regression.joblib
+2026-07-12 22:37:36,155 [INFO] __main__: Vectorizer saved to: C:\Users\qures\MSAIJAN\Engineering and Evaluating AI Systems\CA_Code_Starter\CA_Code_Starter\artifacts\vectorizer_logistic_regression.joblib
+2026-07-12 22:37:36,155 [INFO] __main__: Metrics saved to: C:\Users\qures\MSAIJAN\Engineering and Evaluating AI Systems\CA_Code_Starter\CA_Code_Starter\outputs\metrics_logistic_regression.json
+2026-07-12 22:37:36,155 [INFO] __main__: Report CSV saved to: C:\Users\qures\MSAIJAN\Engineering and Evaluating AI Systems\CA_Code_Starter\CA_Code_Starter\outputs\classification_report_logistic_regression.csv
