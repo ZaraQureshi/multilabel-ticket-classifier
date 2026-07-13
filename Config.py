@@ -17,8 +17,8 @@ class Config:
 
     DATA_FILES = {
         "AppGallery": DATA_DIR / "AppGallery.csv",
-        # "Purchasing": DATA_DIR / "Purchasing.csv",
-        # "new_messages": DATA_DIR / "new_messages.csv"
+        "Purchasing": DATA_DIR / "Purchasing.csv",
+        
     }
 
 

@@ -8,10 +8,10 @@ from sklearn.metrics import classification_report
 logger = logging.getLogger(__name__)
 
 
-def evaluate_multi_output(y_true_df: pd.DataFrame, y_pred: dict, target_cols) -> dict:
+def evaluate_multi_output(y_test, y_pred, target_cols) -> dict:
     report = {}
     for col in target_cols:
-        y_true = y_true_df[col].values
+        y_true = y_test[col].values
         y_hat = y_pred[col]
         report[col] = classification_report(y_true, y_hat, output_dict=True, zero_division=0)
         macro_f1 = report[col]["macro avg"]["f1-score"]

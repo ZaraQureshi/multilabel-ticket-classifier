@@ -24,7 +24,6 @@ def parse_args():
     parser = argparse.ArgumentParser(description="Batch inference on new customer messages")
     parser.add_argument("--input", required=True, help="Path to a CSV of new messages")
     parser.add_argument("--output", required=True, help="Path to write the predictions CSV")
-    parser.add_argument("--model", choices=list(MODEL_REGISTRY.keys()), default=Config.MODEL_NAME)
     return parser.parse_args()
 
 
@@ -48,55 +47,66 @@ def load_new_messages(path):
 def main():
     args = parse_args()
 
-    model_path = Config.ARTIFACTS_DIR / f"model_{Config.MODEL_NAME}.joblib"
-    vectorizer_path = Config.ARTIFACTS_DIR / "vectorizer.joblib"
-    if not model_path.exists() or not vectorizer_path.exists():
-        logger.error(
-            "Missing model or vectorizer artifact (%s / %s). Run training first: "
-            "python -m src.train --model %s",
-            model_path,
-            vectorizer_path,
-            Config.MODEL_NAME,
-        )
-    
-    logger.info("=== Loading model and vectorizer artifacts ===")
-    model = MODEL_REGISTRY[Config.MODEL_NAME].load(model_path)
-    featurizer = TextFeaturizer.load(vectorizer_path)
+    log_file = Config.OUTPUTS_DIR / "logs" / f"predict_{datetime.datetime.now():%Y%m%d_%H%M%S}.log"
+    log_file.parent.mkdir(parents=True, exist_ok=True)
 
-    logger.info("=== Loading new messages from %s ===", args.input)
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+        handlers=[
+            logging.StreamHandler(),        # still prints to console
+            logging.FileHandler(log_file),  # ALSO writes to disk
+        ],
+    )
+
+    model_names = list(MODEL_REGISTRY.keys()) 
+
+    
+
+    logger.info("Loading new messages from %s", args.input)
     df = load_new_messages(args.input)
 
-    logger.info("=== Applying training-consistent text preprocessing ===")
+    logger.info("Applying text preprocessing")
     df_clean = clean_text_columns(df.copy())
 
     
-    logger.info("Transforming text with the fitted (not refit) vectorizer")
-    X = featurizer.transform(df_clean)
+   
+    output_df = pd.DataFrame({
+        "message_id": df["message_id"],
+        "input_text": df[Config.TICKET_SUMMARY].fillna("").astype(str)
+        + " | "
+        + df[Config.INTERACTION_CONTENT].fillna("").astype(str),
+    })
+    for model_name in model_names:
+        model_path = Config.ARTIFACTS_DIR / f"model_{model_name}.joblib"
+        vectorizer_path = Config.ARTIFACTS_DIR / f"vectorizer_{model_name}.joblib"
 
-    logger.info("Generating predictions")
-    predictions = model.predict(X)
-    confidences = model.predict_proba_max(X)
+        if not model_path.exists() or not vectorizer_path.exists():
+            logger.error("Missing artifacts for %s: %s / %s", model_name, model_path, vectorizer_path)
+            continue
 
-    output_df = pd.DataFrame(
-        {
-            "message_id": df["message_id"],
-            "input_text": df[Config.TICKET_SUMMARY].fillna("").astype(str)
-            + " | "
-            + df[Config.INTERACTION_CONTENT].fillna("").astype(str),
-        }
-    )
-    for col in model.target_cols:
-        output_df[f"predicted_{col}"] = predictions[col]
-        output_df[f"confidence_{col}"] = confidences[col].round(4)
+        logger.info("Loading artifacts for %s", model_name)
+        model = MODEL_REGISTRY[model_name].load(model_path)
+        featurizer = TextFeaturizer.load(vectorizer_path)
+
+        logger.info("Transforming text for %s", model_name)
+        X = featurizer.transform(df_clean)
+
+        logger.info("Generating predictions for %s", model_name)
+        predictions = model.predict(X)
+        confidences = model.predict_proba_max(X)
+
+        for col in model.target_cols:
+            output_df[f"predicted_{col}_{model_name}"] = predictions[col]
+            output_df[f"confidence_{col}_{model_name}"] = confidences[col].round(4)
 
 
-    output_df["model_name"] = Config.MODEL_NAME
-    output_df["prediction_timestamp"] = datetime.datetime.now(datetime.timezone.utc).isoformat()
+        output_df["prediction_timestamp"] = datetime.datetime.now(datetime.timezone.utc).isoformat()
 
-    output_path = Path(args.output)
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    output_df.to_csv(output_path, index=False)
-    logger.info(" Wrote %d predictions to %s", len(output_df), output_path)
+        output_path = Path(args.output)
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        output_df.to_csv(output_path, index=False)
+        logger.info(" Wrote %d predictions to %s", len(output_df), output_path)
 
 
 if __name__ == "__main__":

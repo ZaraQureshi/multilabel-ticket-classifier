@@ -6,23 +6,13 @@ from Config import *
 # This preprocessing module is part of the inherited starter prototype.
 # It is intentionally not production-ready and may be improved by students.
 logger = logging.getLogger(__name__)
-# hardcoded file paths 
-def get_input_data():
-    df1 = pd.read_csv("data//AppGallery.csv", skipinitialspace=True)
-    df1.rename(columns={'Type 1': 'y1', 'Type 2': 'y2', 'Type 3': 'y3', 'Type 4': 'y4'}, inplace=True)
-    df2 = pd.read_csv("data//Purchasing.csv", skipinitialspace=True)
-    df2.rename(columns={'Type 1': 'y1', 'Type 2': 'y2', 'Type 3': 'y3', 'Type 4': 'y4'}, inplace=True)
-    df = pd.concat([df1, df2])
-    df[Config.INTERACTION_CONTENT] = df[Config.INTERACTION_CONTENT].values.astype('U')
-    df[Config.TICKET_SUMMARY] = df[Config.TICKET_SUMMARY].values.astype('U')
-    # use TYPE_COLS instead of CLASS_COL because multilabel classification is required
-    df["y"] = df[Config.TYPE_COLS]
-    df = df.loc[(df["y"] != '') & (~df["y"].isna()),]
-    return df
+
 
 def de_duplication(data):
+    if "Ticket id" not in data.columns:
+        logger.info("No 'Ticket id' column present; skipping de-duplication step")
+        return data
     data["ic_deduplicated"] = ""
-
     cu_template = {
         "english": [
         r"(?:Aspiegel|\*\*\*\*\*\(PERSON\)) Customer Support team\,?",
@@ -91,11 +81,11 @@ def de_duplication(data):
 
     # -------- start processing ticket data
 
-    tickets = data["message_id"].value_counts()
+    tickets = data["Ticket id"].value_counts()
 
     for t in tickets.index:
         #print(t)
-        df = data.loc[data['message_id'] == t,]
+        df = data.loc[data['Ticket id'] == t,]
 
         # for one ticket content data
         ic_set = set([])
@@ -129,7 +119,7 @@ def de_duplication(data):
 
             #print(ic_current)
             ic_deduplicated = ic_deduplicated + [' '.join(ic_current)]
-        data.loc[data["message_id"] == t, "ic_deduplicated"] = ic_deduplicated
+        data.loc[data["Ticket id"] == t, "ic_deduplicated"] = ic_deduplicated
     data[Config.INTERACTION_CONTENT] = data['ic_deduplicated']
     data = data.drop(columns=['ic_deduplicated'])
     return data
@@ -184,11 +174,7 @@ def noise_remover(df):
         #print(noise)
         df[Config.INTERACTION_CONTENT] = df[Config.INTERACTION_CONTENT].replace(noise, " ", regex=True)
     df[Config.INTERACTION_CONTENT] = df[Config.INTERACTION_CONTENT].replace(r'\s+', ' ', regex=True).str.strip()
-    # print("df: ",df)
     
-    # good_y1 = df.y1.value_counts()[df.y1.value_counts() > 10].index
-    # df = df.loc[df.y1.isin(good_y1)]
-    #print(df.shape)
     return df
 
 def clean_text_columns(df):
@@ -197,21 +183,34 @@ def clean_text_columns(df):
     df = noise_remover(df)
     return df
 
-def fill_missing_labels(df, target_cols, fill_value=None) :
-    # Missing target labels are assigned Not Applicable instead of dropping the rows, since y3/y4 are absent for many ticket
+# def fill_missing_labels(df, target_cols, fill_value=None) :
+#     # Missing target labels are assigned Not Applicable instead of dropping the rows, since y3/y4 are absent for many ticket
     
-    fill_value = fill_value if fill_value is not None else Config.MISSING_LABEL_FILL
-    df = df.copy()
-    for col in target_cols:
-        df[col] = df[col].fillna(fill_value)
-    return df
+#     fill_value = fill_value if fill_value is not None else Config.MISSING_LABEL_FILL
+#     df = df.copy()
 
+#     df = df.dropna(subset=target_cols, how="all")
+#     # print(df.info())
+#     # print(df.isna().sum())
+#     # for col in target_cols:
+#     #     df[col] = df[col].fillna(fill_value)
+#     return df
+
+def drop_missing_labels(df,target_cols):
+    null_mask = df[target_cols].isna().any(axis=1)
+    if null_mask.sum() > 0:
+        
+        df = df.loc[~null_mask].copy()
+    return df
 
 def filter_rare_classes(df, target_cols, min_samples) :
     # drop the labels that are too rare to learn and cannot be used for stratify
     
-    df = fill_missing_labels(df, target_cols)
     before = len(df)
+   
+    df=drop_missing_labels(df, target_cols)
+    
+    
 
     for col in target_cols:
         counts = df[col].value_counts()
